@@ -11,6 +11,7 @@ CONFIG += c++17
 SOURCES += \
     main.cpp \
     mainwindow.cpp \
+    phonenumbervalidator.cpp \
     productsmodel.cpp \
     providersmodel.cpp \
     storage.cpp
@@ -18,6 +19,7 @@ SOURCES += \
 HEADERS += \
     mainwindow.h \
     models.h \
+    phonenumbervalidator.h \
     productsmodel.h \
     providersmodel.h \
     storage.h

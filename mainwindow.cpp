@@ -1,5 +1,9 @@
 #include <QMessageBox>
 
+#include <QRegularExpression>
+#include <QRegularExpressionValidator>
+#include "phonenumbervalidator.h"
+
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
@@ -24,6 +28,18 @@ MainWindow::MainWindow(QWidget *parent)
         connect(m_ui->tableViewProviders, &QTableView::doubleClicked,
                 this, &MainWindow::providersDoubleClicked);
     }
+
+    // validators
+
+    {
+        const auto regExpForTextFields = QRegularExpression("[A-Za-zА-Яа-я0-9]{10}");
+        m_ui->lineEditProviderName->setValidator(
+            new QRegularExpressionValidator(regExpForTextFields));
+        m_ui->lineEditProviderDesc->setValidator(
+            new QRegularExpressionValidator(regExpForTextFields));
+        m_ui->lineEditProviderPhoneNumber->setValidator(
+            new PhoneNumberValidator(this));
+    }
 }
 
 MainWindow::~MainWindow()
@@ -41,3 +57,9 @@ void MainWindow::providersDoubleClicked(const QModelIndex& index)
     QMessageBox::information(this, "Provider Phone Number",
                              m_providers->getPhoneNumber(index.row()));
 }
+
+void MainWindow::on_pushButtonAddProvider_clicked()
+{
+
+}
+

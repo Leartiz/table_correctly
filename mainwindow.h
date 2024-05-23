@@ -23,6 +23,8 @@ public:
 private slots:
     void providersDoubleClicked(const QModelIndex&);
 
+    void on_pushButtonAddProvider_clicked();
+
 private:
     Ui::MainWindow *m_ui;
     ProductsModel *m_products;
